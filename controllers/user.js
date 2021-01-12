@@ -30,10 +30,21 @@ const getUser = async (req, res, next) => {
     }
 }
 
+const getUserByUserName = async (req, res, next) => {
+    try {
+        let params = req.params
+        let user = await getUserOnDB({userName:params.userName}, next)
+        res.status(200).send(user)
+    } catch(err) {
+        res.status(500).send({ message: err.message })
+        next(err)
+    }
+}
+
 const getUserByName = async (req, res, next) => {
     try {
         let params = req.params
-        let user = await getUserOnDB({nombre:params.nombre}, next)
+        let user = await getUserOnDB({nombre: { $regex: new RegExp(params.nombre,'i')}}, next)
         res.status(200).send(user)
     } catch(err) {
         res.status(500).send({ message: err.message })
@@ -44,5 +55,6 @@ const getUserByName = async (req, res, next) => {
 module.exports = {
     crearUsuario,
     getUser,
-    getUserByName
+    getUserByName,
+    getUserByUserName
 }
