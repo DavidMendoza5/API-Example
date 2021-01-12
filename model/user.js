@@ -3,6 +3,10 @@ const moongose = require('mongoose')
 const schema = moongose.Schema
 
 let UserSchema = new schema ({
+    userName: {
+        type: String,
+        required: true
+    },
     nombre: {
         type: String
     },
