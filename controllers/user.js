@@ -11,7 +11,7 @@ const crearUsuario = async (req,res) => {
 
         const validateRegistered = (err, userRegistered) => {
             status = err ? 500:200
-            message = err ? {message: 'Error al registrar el docente'}:{usuario: userRegistered}
+            message = err ? {message: 'Error al registrar el usuario'}:{usuario: userRegistered}
             res.status(status).send(message)
         }
         await createUserInDB(params, validateRegistered)
