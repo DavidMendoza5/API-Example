@@ -1,8 +1,9 @@
+require('dotenv').config()
 
 const config = {
-    port: 3800,
-    conexion: 'mongodb://localhost:27017/prograweb',
-    host: 'http://localhost:3800/'
+    port: process.env.PORT,
+    conexion: process.env.DB_CONNECTION,
+    host: `http://localhost:${process.env.PORT}/`
 }
 
 module.exports = config;
