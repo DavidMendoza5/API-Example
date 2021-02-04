@@ -14,6 +14,8 @@ let UserSchema = new schema ({
         type: String,
         required: true
     }
+}, {
+    timestamps: true
 })
 
 module.exports = moongose.model('user', UserSchema)
