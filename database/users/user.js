@@ -23,7 +23,20 @@ const getUserOnDB = async (filtros, next) => {
     }
 }
 
+const getInfo = async (Schema, filtros, next) => {
+    try {
+        const information = Schema.find(filtros, { password:false }, (err, lisOfInfo) => {
+            if(err) throw err
+            return lisOfInfo
+        })
+        return information
+    } catch(err) {
+        next(err)
+    }
+}
+
 module.exports = {
     createUserInDB,
-    getUserOnDB
+    getUserOnDB,
+    getInfo
 }

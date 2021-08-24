@@ -1,4 +1,5 @@
-const {createUserInDB, getUserOnDB} = require('../database/users/user')
+const {createUserInDB, getUserOnDB, getInfo} = require('../database/users/user')
+const userSchema = require('../model/user')
 const encrypt = require('../utils/encryp')
 
 const crearUsuario = async (req,res) => {
@@ -17,6 +18,15 @@ const crearUsuario = async (req,res) => {
         await createUserInDB(params, validateRegistered)
     } catch(err) {
         res.status(500).send({ message: err.message })
+    }
+}
+
+const getInformation = async (req, res, next) => {
+    try {
+        let info = await getInfo(userSchema, {}, {password: false}, next)
+        res.status(200).send(info)
+    } catch(err) {
+        res.status(500).send('Error')
     }
 }
 
@@ -56,5 +66,6 @@ module.exports = {
     crearUsuario,
     getUser,
     getUserByName,
-    getUserByUserName
+    getUserByUserName,
+    getInformation
 }

@@ -9,5 +9,6 @@ api.post('/crearUsuario', verifyData, verifyUser, userControllers.crearUsuario)
 api.get('/obtenerUsuarios', userControllers.getUser)
 api.get('/obtenerUsuario/busqueda/:nombre', userControllers.getUserByName)
 api.get('/obtenerUsuario/:userName', userControllers.getUserByUserName)
+api.get('/usuarios', userControllers.getInformation)
 
 module.exports = api
